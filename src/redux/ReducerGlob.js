@@ -5,14 +5,16 @@ import {
   DECREMENT_SESSION,
   RESET,
   START_TIMER,
-  PAUSE_TIMER
+  PAUSE_TIMER,
+  RELAX,
 } from "./types/types";
 
 const initialState = {
   breakLength: 5,
-  sessionLength: 25,
+  sessionLength: 0.1,
   start: false,
   pause: false,
+  relax: false,
 };
 
 const editorReducer = (state = initialState, action) => {
@@ -35,6 +37,8 @@ const editorReducer = (state = initialState, action) => {
       return { ...state, pause: action.payload };
     case RESET:
       return { ...state, ...action.payload };
+    case RELAX:
+      return { ...state, relax: action.payload };
     default:
       return state;
   }

@@ -5,7 +5,8 @@ import {
   DECREMENT_SESSION,
   RESET,
   START_TIMER,
-  PAUSE_TIMER
+  PAUSE_TIMER,
+  RELAX,
 } from "../types/types";
 
 export const incrementBreak = () => {
@@ -53,5 +54,12 @@ export const reset = () => {
   return {
     type: RESET,
     payload: { breakLength: 5, sessionLength: 25 },
+  };
+};
+
+export const relax = (data) => {
+  return {
+    type: RELAX,
+    payload: data,
   };
 };

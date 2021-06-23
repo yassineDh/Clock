@@ -1,16 +1,27 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { incrementSession, decrementSession } from "../redux/actions/action";
+import {
+  incrementSession,
+  decrementSession,
+  pauseTimer,
+} from "../redux/actions/action";
 
 function SessionComponent() {
   let sessionTime = useSelector((state) => state.sessionLength);
+  let start = useSelector((state) => state.start);
   const dispatch = useDispatch();
 
   let incremet = () => {
-    dispatch(incrementSession());
+    if (!start) {
+      dispatch(incrementSession());
+      dispatch(pauseTimer(false));
+    }
   };
   let decremet = () => {
-    dispatch(decrementSession());
+    if (!start) {
+      dispatch(decrementSession());
+      dispatch(pauseTimer(false));
+    }
   };
 
   return (
